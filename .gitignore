@@ -1,0 +1,109 @@
+### Android / Jetpack Compose ###
+
+# Compiled source
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+
+# Gradle files
+.gradle/
+build/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Local configuration
+local.properties
+*.iml
+.idea/
+.idea/*
+
+# Log files
+*.log
+
+# Android Studio captures
+captures/
+
+# Keystore files
+*.jks
+*.keystore
+
+# Generated files
+.navigation/
+hilt_aggregated_deps/
+ksp/
+**/ksp/
+**/generated/
+
+# Jetpack Compose
+.compose-build/
+compose-compiler/
+compose-cache/
+compose-metrics/
+compose-report/
+
+# Lint / Reports
+lint/intermediates/
+lint/generated/
+lintVitalReports/
+*.lint
+*.xml.zip
+
+# Gradle cache
+gradle-app.setting
+
+# NDK / CMake
+.externalNativeBuild/
+.cxx/
+
+# Testing
+/test-results/
+**/test-results/
+**/test-output/
+**/outputs/unit_test_code_coverage/
+**/outputs/code_coverage/
+coverage/
+
+# Firebase / Google Services
+google-services.json
+firebase-debug.log
+
+# Misc
+*.hprof
+*.orig
+.DS_Store
+Thumbs.db
+
+# Environment / Secrets
+.env
+.env.local
+secrets.properties
+apikeys.properties
+
+# Kotlin / IntelliJ specific
+out/
+.idea/caches/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/misc.xml
+.idea/deploymentTargetDropDown.xml
+.idea/gradle.xml
+.idea/vcs.xml
+.idea/inspectionProfiles/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Mac / Windows system
+ehthumbs.db
+Icon?
+desktop.ini
+
+# Symbolic links / lock files
+*.lock
