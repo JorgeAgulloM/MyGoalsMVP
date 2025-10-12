@@ -107,3 +107,13 @@ desktop.ini
 
 # Symbolic links / lock files
 *.lock
+
+# Ignore build per module
+app/build/
+data/build/
+domain/build/
+presentation/build/
+
+# Hilt / KSP generated sources
+**/build/generated/
+**/build/tmp/
