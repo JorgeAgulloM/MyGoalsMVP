@@ -1,0 +1,61 @@
+name: Android CI (JDK17 for Gradle, compile with JDK21)
+
+on:
+  push:
+    branches: ["main", "develop"]
+  pull_request:
+    branches: ["main", "develop"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Instala Temurin JDK 17 (para ejecutar Gradle/AGP)
+      - name: Set up Temurin JDK 17 (Gradle/AGP JVM)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      # Instala Temurin JDK 21 (para toolchains / compilación)
+      - name: Install Temurin JDK 21 (extra)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+        id: jdk21
+
+      - name: Show java versions
+        run: |
+          echo "JAVA_HOME (runner): $JAVA_HOME"
+          $JAVA_HOME/bin/java -version
+          # JDK21 path disponible en /opt/hostedtoolcache/...
+          /usr/lib/jvm/temurin-21-jdk/bin/java -version || true
+
+      # Asegura que Gradle use JDK 17 (ORG_GRADLE_JAVA_HOME)
+      - name: Grant execute permission for Gradle
+        run: chmod +x ./gradlew
+
+      - name: Build (Gradle runs with JDK 17)
+        env:
+          ORG_GRADLE_JAVA_HOME: ${{ env.JAVA_HOME }}   # esto apunta al JDK 17 provisto por setup-java anterior
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Run unit tests
+        env:
+          ORG_GRADLE_JAVA_HOME: ${{ env.JAVA_HOME }}
+        run: ./gradlew testDebugUnitTest --no-daemon
+
+      - name: Detekt
+        env:
+          ORG_GRADLE_JAVA_HOME: ${{ env.JAVA_HOME }}
+        run: ./gradlew detekt --no-daemon
+
+      - name: KtLint
+        env:
+          ORG_GRADLE_JAVA_HOME: ${{ env.JAVA_HOME }}
+        run: ./gradlew ktlintCheck --no-daemon
