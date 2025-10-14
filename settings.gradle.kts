@@ -21,4 +21,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "MyGoals"
 include(":app")
- 
+include(":components")
+include(":presentation")
+include(":core")
+include(":domain")
+include(":data")
+include(":tools")
