@@ -36,3 +36,6 @@ jobs:
 
       - name: Run unit tests
         run: ./gradlew testDebugUnitTest --stacktrace
+
+      - name: Run domain tests
+        run: ./gradlew :domain:test --no-daemon
